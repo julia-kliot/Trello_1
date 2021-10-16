@@ -11,15 +11,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class LoginTests extends TestBase {
-    WebDriver wd;
-    @BeforeClass
-    public void setUp(){
-        wd= new ChromeDriver();
-        wd.manage().window().maximize();
-        wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wd.navigate().to("https://trello.com/");
 
-    }
     @Test
     public void testLogin() throws InterruptedException {
         click(By.cssSelector("[href='/login']"));
@@ -34,20 +26,4 @@ public class LoginTests extends TestBase {
 
     }
 
-    public void type(By locator2, String text) {
-        click(locator2);
-        wd.findElement(locator2).clear();
-        wd.findElement(locator2).sendKeys(text);
-    }
-
-    public void click(By locator) {
-        wd.findElement(locator).click();
-    }
-
-    @AfterClass
-    public void tearDown(){
-        //wd.close();
-        wd.quit();
-
-    }
 }
