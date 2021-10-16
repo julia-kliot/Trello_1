@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginTests {
+public class LoginTests extends TestBase {
     WebDriver wd;
     @BeforeClass
     public void setUp(){
