@@ -12,11 +12,12 @@ public class TestBase {
     WebDriver wd;
 
     @BeforeClass
-    public void setUp(){
+    public void setUp() throws InterruptedException {
         wd= new ChromeDriver();
         wd.manage().window().maximize();
         wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wd.navigate().to("https://trello.com/");
+        login("juliakliot.jk@gmail.com","misha240613");
 
     }
 
@@ -29,7 +30,15 @@ public class TestBase {
     public void click(By locator) {
         wd.findElement(locator).click();
     }
-
+    public void login(String user, String password) throws InterruptedException {
+        click(By.cssSelector("[href='/login']"));
+        type(By.cssSelector("#user"), user);
+        Thread.sleep(2000);
+        click(By.cssSelector("#login"));
+        type(By.name("password"),password);
+        click(By.id("login-submit"));
+        Thread.sleep(15000);
+    }
     @AfterClass
     public void tearDown(){
         //wd.close();
