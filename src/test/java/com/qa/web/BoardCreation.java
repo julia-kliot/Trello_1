@@ -1,22 +1,27 @@
 package com.qa.web;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class BoardCreation extends TestBase{
+public class BoardCreation extends TestBase {
     @Test
-    public void testBoardCreation(){
+    public void testBoardCreation() throws InterruptedException {
+        int bordCountBeforeCreation= getBordCount();
         //clickCreateByttonOnHeader
-        click(By.cssSelector("[data-test-id='header-create-menu-button']"));
-        //selectCreateBoard
-        click(By.cssSelector("[aria-label='BoardIcon']"));//
+        initBoardCreationfromHeader();
         //fieldBoardCreationForm
-        type(By.cssSelector("[data-test-id='create-board-title-input']"), "test");
-
-        //confirmBoardCreation
-click(By.cssSelector("[data-test-id='create-board-submit-button']"));
+        fillBoardCreationForm("test");
         //returnToHomePage
-        //click(By.cssSelector("[data-test-id='header-home-button']"));
+        Thread.sleep(15000);
+        //if (isHomeButton()) {
+            //click(By.cssSelector("[data-test-id='header-home-button]"));
+        //} else
+            //click(By.cssSelector("[href='/']"));
+returnToHomePage();
+        int bordCountAfterCreation= getBordCount();
+        Assert.assertEquals(bordCountBeforeCreation, bordCountAfterCreation+1 );
         //Assert
     }
+
 }
